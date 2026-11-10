@@ -12,19 +12,17 @@ nstage(
 ) = initial + 2 * rand(rng, Binomial(n, p)) - n
 
 function randomwalk(
-    initial::Int,
-    n::Int;
+    initial::Int, 
+    n::Int; 
     p::Real = 0.5,
     rng::AbstractRNG = Random.default_rng()
 )
-    walk = (steps = [0], stage = [initial])
-    next = initial
+    stage = Vector{Int}(undef, n + 1)
+    stage[1] = initial
     for i in 1:n
-        next += rwstep(;p, rng)
-        push!(walk.steps, i)
-        push!(walk.stage, next)
+        stage[i+1] = stage[i] + rwstep(;p, rng)
     end
-    walk
+    (steps = 0:n, stage = stage)
 end
 
 function gamblerwalk(
@@ -42,7 +40,11 @@ function gamblerwalk(
     (exit = S, time = steps)
 end
 
-function gamblerruin(initial::Integer, win::Integer, p::Real = 0.5)
+function gamblerruin(
+    initial::Integer,
+    win::Integer;
+    p::Real = 0.5
+)
     win <= 0 && throw(DomainError(win, "Expected win > 0"))
     0 < p < 1 || throw(DomainError(p, "Expected p ∈ (0, 1)"))
     initial <= 0 && return 1.0
