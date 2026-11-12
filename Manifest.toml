@@ -2,7 +2,7 @@
 
 julia_version = "1.12.6"
 manifest_format = "2.0"
-project_hash = "ed8ae3127488528d8bb77c1112bc56ac8c14ba33"
+project_hash = "732f8a7372e8c8af1f20f69b3548dd3cc58d6bea"
 
 [[deps.Accessors]]
 deps = ["CompositionsBase", "ConstructionBase", "Dates", "InverseFunctions", "MacroTools"]
@@ -322,7 +322,7 @@ uuid = "2e76f6c2-a576-52d4-95c1-20adfe4de566"
 version = "100.15000.0+0"
 
 [[deps.HelloStats]]
-deps = ["Distributions", "Plots", "QuadGK", "Statistics"]
+deps = ["Distributions", "Plots", "QuadGK", "Random", "Statistics"]
 path = "."
 uuid = "c64e0a05-10a4-42a9-8b7f-67ebc78e241b"
 version = "0.1.0"
