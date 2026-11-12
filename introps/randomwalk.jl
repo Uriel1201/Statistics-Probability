@@ -12,8 +12,8 @@ nstage(
 ) = initial + 2 * rand(rng, Binomial(n, p)) - n
 
 function randomwalk(
-    initial::Int, 
-    n::Int; 
+    initial::Int,
+    n::Int;
     p::Real = 0.5,
     rng::AbstractRNG = Random.default_rng()
 )
@@ -49,10 +49,8 @@ function gamblerruin(
     0 < p < 1 || throw(DomainError(p, "Expected p ∈ (0, 1)"))
     initial <= 0 && return 1.0
     initial >= win && return 0.0
-
     ρ = log1p(-p) - log(p)
     iszero(ρ) && return 1 - initial / win
-
     plose = if ρ < 0
         1 - (expm1(initial * ρ) / expm1(win * ρ))
     else
